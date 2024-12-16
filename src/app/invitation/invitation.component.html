@@ -1,0 +1,26 @@
+<div class="invitation-card" [@cardAnimation]="'normal'">
+  <img [src]="invitationImage" alt="Saurya's Sweet Sixteen Invitation">
+  <div class="invitation mt-5">
+    <!-- Marquee Header -->
+    <div class="marquee-container">
+      <h1 class="marquee">हार्दिक निमन्त्रणा !</h1>
+    </div>
+    <div>
+      <p class="intro">
+        <span class="dear">Dear</span> <strong class="animated-name">{{ name }}</strong>
+      </p>
+    </div>
+
+    <h2>Get Ready for Saurya's Epic Sweet Sixteen!</h2>
+    <p>When: {{ invitationDate }} at {{ invitationTime }}</p>
+    <p>Where: {{ invitationVenue }}</p>
+    <p>Vibe: {{ invitationTheme }}</p>
+    <p>{{ personalizedMessage }}</p>
+
+    <div class="rsvp-section">
+      <button mat-raised-button color="primary" (click)="openRSVPDialog()">RSVP Now!</button>
+      <p *ngIf="rsvpMessage" class="party-message">{{ rsvpMessage }}</p>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </div>
+  </div>
+</div>

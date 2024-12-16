@@ -1,0 +1,44 @@
+<div class="admin">
+  <h2 class="sweet-heading">Sweet Sixteen & Never Been More Fun! Join Saurya's Celebration!</h2>
+
+  <img src="assets/images/saurya.jpg" class="img-fluid party-image" alt="Sweet Sixteen Celebration Image">
+
+  <h2 class="sweet-heading">Add New Invitation - Make Saurya's Day Special!</h2>
+  <form (ngSubmit)="addInvitation()" class="form-control-animated">
+    <label for="name">Name: (Who's Ready to Celebrate with Saurya?)</label>
+    <input type="text" id="name" [(ngModel)]="name" name="name" required placeholder="Enter name to join the party!">
+    <button type="submit" class="btn-sweet">Add Invitation - Let's Celebrate!</button>
+  </form>
+
+  <!-- Display success message -->
+  <p *ngIf="successMessage" class="success-message">🎉 {{ successMessage }} You've made Saurya's day! 🎉</p>
+
+  <!-- Display the name with invitation link -->
+  <div *ngIf="invitationLink" class="preview-box">
+    <p class="sweet-text">
+      <strong class="animated-name">{{ name }}</strong> has been invited to the sweet celebration!
+      <a [routerLink]="['/invitation', invitationLink.split('/').pop()]" class="preview-link">View Live Invitation</a>
+    </p>
+  </div>
+
+  <h3 class="sweet-heading">Invited Friends - The More, The Merrier!</h3>
+  <ul class="invited-list">
+    <li *ngFor="let invitation of invitations" class="party-guest">
+      <span class="friend-icon">🎉</span>
+      <a [routerLink]="['/invitation', invitation.id]" class="name-link">{{ invitation.name }}</a>
+      <span class="party-comment"> - Ready to Celebrate Saurya's Sweet Sixteen!</span>
+      <span class="party-heart">❤️</span>
+    </li>
+  </ul>
+
+  <h3 class="sweet-heading">RSVP Statuses</h3>
+  <ul class="rsvp-list">
+    <li *ngFor="let invite of invitations">
+      <strong>{{ invite.name }}</strong> -
+      <span [ngClass]="{'accepted': invite.rsvp === 'Accepted', 'declined': invite.rsvp === 'Declined', 'maybe': invite.rsvp === 'Maybe'}">
+        {{ invite.rsvp || 'No Response' }}
+      </span>
+      <span *ngIf="invite.rsvp === 'Accepted'"> (Guests: {{ invite.guestCount || 1 }})</span>
+    </li>
+  </ul>
+</div>

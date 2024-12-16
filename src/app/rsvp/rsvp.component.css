@@ -1,0 +1,45 @@
+/* Style for the dialog content */
+mat-dialog-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style for the form fields */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Adjust button spacing */
+mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+/* Style for buttons */
+button {
+  margin-left: 10px;
+}
+
+/* Specific style for the submit button */
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Hover effect for interactive buttons */
+button:not([disabled]):hover {
+  background-color: #ff69b4;
+  color: white;
+}
+.thank-you-message {
+  color: green;
+  text-align: center;
+  font-weight: bold;
+  animation: fadeOut 3s; /* Animation for fading out */
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

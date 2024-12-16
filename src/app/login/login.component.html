@@ -1,0 +1,27 @@
+<div class="login-container">
+  <h1>Saurya's Sweet Sixteen Invitation Admin Login</h1>
+  <div *ngIf="loginError" class="error">{{ loginError }}</div>
+  <form (ngSubmit)="login()">
+    <input
+      type="text"
+      [(ngModel)]="username"
+      placeholder="Username"
+      name="username"
+      required
+    />
+    <div class="password-input">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        [(ngModel)]="password"
+        placeholder="Password"
+        name="password"
+        required
+        class="password-field"
+      />
+      <span class="password-toggle" (click)="togglePasswordVisibility()">
+        <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </span>
+    </div>
+    <button type="submit">Login</button>
+  </form>
+</div>

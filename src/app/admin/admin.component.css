@@ -1,0 +1,197 @@
+.admin {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #fff; /* White background for contrast */
+  border: 2px solid #ff69b4; /* Pink border to match theme */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.sweet-heading {
+  color: #ff69b4;
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px dashed #ff69b4; /* Dashed border below heading */
+  padding-bottom: 10px;
+}
+
+.party-image {
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 20px auto; /* Increased margin for spacing */
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ffe3f2; /* Light pink border for image */
+}
+
+.form-control-animated {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border: 1px solid #ffe3f2; /* Light border around form */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.form-control-animated label {
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.form-control-animated input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.btn-sweet {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+  border: 2px solid #ff4081; /* Darker pink border for button */
+}
+
+.btn-sweet:hover {
+  background-color: #ff4081;
+}
+
+.success-message {
+  text-align: center;
+  color: #28a745;
+  font-weight: bold;
+  border: 1px dashed #28a745; /* Dashed border for success message */
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.preview-box {
+  background: #ffe3f2;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ff69b4; /* Border around preview box */
+}
+
+.sweet-text {
+  color: #444;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.animated-name {
+  color: #ff69b4;
+  font-size: 1.2em;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.preview-link {
+  color: #ff69b4;
+  text-decoration: none;
+  border-bottom: 1px solid #ff69b4;
+  transition: color 0.3s;
+}
+
+.preview-link:hover {
+  color: #ff4081;
+  border-bottom-color: #ff4081;
+}
+
+.invited-list {
+  list-style-type: none;
+  padding: 0;
+  border-top: 2px solid #ff69b4; /* Top border for the list */
+}
+
+.party-guest {
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #ffe3f2; /* Indentation with a colored line */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.friend-icon {
+  margin-right: 10px;
+  font-size: 1.2em;
+  color: #ff69b4;
+}
+
+.name-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  flex-grow: 1;
+}
+
+.name-link:hover {
+  color: #ff69b4;
+}
+
+.party-comment {
+  color: #888;
+  margin-left: 10px;
+  font-style: italic;
+}
+
+.party-heart {
+  color: #ff4081;
+  font-size: 1.2em;
+  margin-left: 10px;
+}
+
+/* Styles for RSVP list */
+.rsvp-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+  border-top: 2px solid #ff69b4; /* Top border for the list */
+}
+
+.rsvp-list li {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.accepted {
+  color: green;
+}
+
+.declined {
+  color: red;
+}
+
+.maybe {
+  color: blue;
+}

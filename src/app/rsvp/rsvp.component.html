@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>RSVP</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>RSVP Status</mat-label>
+    <mat-select [(ngModel)]="rsvp" (selectionChange)="onRsvpChange()">
+      <mat-option value="Accepted">Accepted</mat-option>
+      <mat-option value="Declined">Declined</mat-option>
+      <mat-option value="Maybe">Maybe</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field *ngIf="rsvp === 'Accepted'">
+    <input matInput type="number" [(ngModel)]="guestCount" placeholder="Number of Guests" min="1">
+  </mat-form-field>
+  <p *ngIf="showThankYou" class="thank-you-message">Thank you for your RSVP!</p> <!-- Thank you message -->
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [disabled]="!rsvp" (click)="onSubmit()">Submit</button>
+</mat-dialog-actions>
