@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AuthService } from '../auth.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Invitation } from "../../invitation";
 import { RsvpComponent } from "../rsvp/rsvp.component";
 import { Meta, Title } from "@angular/platform-browser";
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-invitation',
@@ -40,9 +41,9 @@ import { Meta, Title } from "@angular/platform-browser";
     ])
   ]
 })
-export class InvitationComponent implements OnInit {
+export class InvitationComponent implements OnInit, AfterViewInit {
   name: string = '';
-  invitationImage = 'assets/images/saurya.jpg'; // The image path for the invitation
+  invitationImage = 'assets/images/saurya.jpg';
   invitationDate = 'February 1, 2025';
   invitationTime = '6:00 PM';
   invitationVenue = 'Celebration Hall';
@@ -54,6 +55,25 @@ export class InvitationComponent implements OnInit {
   guestRsvp: string = '';
   guestCount: number = 1;
   rsvpMessage: string = '';
+
+  countdownDisplay: string = '';
+
+  startCountdown() {
+    const eventTime = new Date(`${this.invitationDate} ${this.invitationTime}`).getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventTime - now;
+      if (distance < 0) {
+        this.countdownDisplay = 'Event has started!';
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        this.countdownDisplay = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }, 1000);
+  }
 
   constructor(
     public authService: AuthService,
@@ -69,14 +89,14 @@ export class InvitationComponent implements OnInit {
     this.titleService.setTitle('Saurya\'s Sweet Sixteen Party');
 
     // Set Open Graph and Twitter meta tags for social sharing
-    const imageUrl = this.invitationImage; // Using the 'invitationImage' for social media thumbnail
-    this.metaService.addTag({ property: 'og:title', content: 'Saurya\'s Sweet Sixteen Party' });
-    this.metaService.addTag({ property: 'og:description', content: 'Join us for an epic celebration as Saurya turns 16!' });
-    this.metaService.addTag({ property: 'og:image', content: imageUrl }); // Open Graph image
+    const imageUrl = this.invitationImage;
+    this.metaService.addTag({ property: 'og:title', content: 'Saurya\'s Sweet Sixteen Bash' });
+    this.metaService.addTag({ property: 'og:description', content: 'Party with us as Saurya turns 16 - it\'s gonna be epic!' });
+    this.metaService.addTag({ property: 'og:image', content: imageUrl });
 
-    this.metaService.addTag({ name: 'twitter:title', content: 'Saurya\'s Sweet Sixteen Party' });
-    this.metaService.addTag({ name: 'twitter:description', content: 'Join us for an epic celebration as Saurya turns 16!' });
-    this.metaService.addTag({ name: 'twitter:image', content: imageUrl }); // Twitter image
+    this.metaService.addTag({ name: 'twitter:title', content: 'Saurya\'s Sweet Sixteen Bash' });
+    this.metaService.addTag({ name: 'twitter:description', content: 'Party with us as Saurya turns 16 - it\'s gonna be epic!' });
+    this.metaService.addTag({ name: 'twitter:image', content: imageUrl });
 
     // Fetch invitation details from Firebase
     const id = this.route.snapshot.paramMap.get('id');
@@ -96,6 +116,10 @@ export class InvitationComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit() {
+    this.startCountdown();
+  }
+
   onRsvpChange() {
     if (this.guestRsvp !== 'Accepted') {
       this.guestCount = 1;
@@ -113,6 +137,7 @@ export class InvitationComponent implements OnInit {
       this.firebaseService.updateRSVP(id, updateData)
         .then(() => {
           this.rsvpMessage = "Sweet! You're in for a blast!";
+          this.triggerConfetti();
         })
         .catch(error => {
           console.error('Error submitting RSVP:', error);
@@ -135,4 +160,13 @@ export class InvitationComponent implements OnInit {
       }
     });
   }
+
+  triggerConfetti() {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  }
+
 }
